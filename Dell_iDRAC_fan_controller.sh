@@ -6,6 +6,9 @@
 
 source functions.sh
 source constants.sh
+source configuration.sh
+
+load_configuration
 
 # Trap the signals for container exit and run graceful_exit function
 trap 'graceful_exit' SIGINT SIGQUIT SIGTERM
@@ -46,9 +49,10 @@ fi
 echo "Server model: $SERVER_MANUFACTURER $SERVER_MODEL"
 echo "iDRAC/IPMI host: $IDRAC_HOST"
 
-# Log the fan speed objective, CPU temperature threshold and check interval
+# Log the fan speed objective, its source, CPU temperature threshold and check interval
 echo "Fan speed objective: $DECIMAL_FAN_SPEED%"
-echo "CPU temperature threshold: "$CPU_TEMPERATURE_THRESHOLD"°C"
+echo "Fan speed configuration source: $FAN_SPEED_CONFIGURATION_SOURCE"
+echo "CPU temperature threshold: ${CPU_TEMPERATURE_THRESHOLD}°C"
 echo "Check interval: ${CHECK_INTERVAL}s"
 echo ""
 
